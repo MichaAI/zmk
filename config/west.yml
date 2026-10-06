@@ -4,11 +4,16 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: michaai
+      url-base: https://github.com/MichaAI
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+    - name: zmk-hid-io-plover-hid
+      remote: michaai
+      revision: claude/beautiful-ramanujan-2nhmmh
   self:
     path: config

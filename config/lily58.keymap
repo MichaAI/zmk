@@ -9,6 +9,8 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/hid-io/plover_hid.h>
+#include <behaviors/plover_hid.dtsi>
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
@@ -23,13 +25,13 @@
 // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
 // |  CTRL |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-//                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
+//                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | STENO |
             bindings = <
 &kp ESC   &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                     &kp N6 &kp N7   &kp N8    &kp N9  &kp N0   &kp GRAVE
 &kp TAB   &kp Q  &kp W  &kp E    &kp R    &kp T                      &kp Y  &kp U    &kp I     &kp O   &kp P    &kp MINUS
 &kp LCTRL &kp A  &kp S  &kp D    &kp F    &kp G                      &kp H  &kp J    &kp K     &kp L   &kp SEMI &kp SQT
 &kp LSHFT &kp Z  &kp X  &kp C    &kp V    &kp B  &kp LBKT   &kp RBKT &kp N  &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                        &kp LALT &kp LGUI &mo 1  &kp SPACE  &kp RET  &mo 2  &kp BSPC &kp RGUI
+                        &kp LALT &kp LGUI &mo 1  &kp SPACE  &kp RET  &mo 3  &kp BSPC &mo 2
             >;
         };
 
@@ -46,6 +48,22 @@
 &kp GRAVE  &kp EXCL         &kp AT            &kp HASH          &kp DOLLAR   &kp PRCNT                    &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR  &kp RPAR  &kp TILDE
 &trans     &trans           &trans            &trans            &trans       &trans    &trans   &trans    &trans    &kp MINUS &kp KP_PLUS     &kp LBRC  &kp RBRC  &kp PIPE
                                               &trans            &trans       &trans    &trans   &trans    &trans    &trans    &trans
+            >;
+        };
+
+        steno_layer {
+// ------------------------------------------------------------------------------------------------------------
+// |  #1   |  #2  |  #3  |  #4  |  #5  |  #6  |                   |  #7  |  #8   |  #9   |  #A  |  #B   |  #C   |
+// |       |  S1  |  T   |  P   |  H   |  *1  |                   |  *3  |  -F   |  -P   |  -L  |  -T   |  -D   |
+// |       |  S2  |  K   |  W   |  R   |  *2  |                   |  *4  |  -R   |  -B   |  -G  |  -S   |  -Z   |
+// |       |      |      |      |      |      |        |  |       |      |       |       |      |       |       |
+//                       |      |      |  A   |   O    |  |   E   |  U   |       | (held)|
+            bindings = <
+&plv PLV_NM  &plv PLV_NM2 &plv PLV_NM3 &plv PLV_NM4 &plv PLV_NM5 &plv PLV_NM6                         &plv PLV_NM7 &plv PLV_NM8 &plv PLV_NM9 &plv PLV_NMA &plv PLV_NMB &plv PLV_NMC
+&none        &plv PLV_SL  &plv PLV_TL  &plv PLV_PL  &plv PLV_HL  &plv PLV_ST                          &plv PLV_ST3 &plv PLV_FR  &plv PLV_PR  &plv PLV_LR  &plv PLV_TR  &plv PLV_DR
+&none        &plv PLV_SL2 &plv PLV_KL  &plv PLV_WL  &plv PLV_RL  &plv PLV_ST2                         &plv PLV_ST4 &plv PLV_RR  &plv PLV_BR  &plv PLV_GR  &plv PLV_SR  &plv PLV_ZR
+&none        &none        &none        &none        &none        &none        &none        &none      &none        &none        &none        &none        &none        &none
+                                       &none        &none        &plv PLV_A   &plv PLV_O   &plv PLV_E &plv PLV_U   &none        &trans
             >;
         };
 
