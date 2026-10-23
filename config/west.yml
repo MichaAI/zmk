@@ -14,6 +14,6 @@ manifest:
       import: app/west.yml
     - name: zmk-hid-io-plover-hid
       remote: michaai
-      revision: claude/beautiful-ramanujan-2nhmmh
+      revision: main
   self:
     path: config
